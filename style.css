@@ -1,0 +1,288 @@
+/* --- VARIABLES & RESET --- */
+:root {
+    --bg-color: #1a1a2e;       /* Fond sombre bleuté */
+    --bg-alt: #16213e;         /* Fond alternatif un peu plus clair */
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    
+    /* Les couleurs de l'entreprise */
+    --color-next: #00d4ff;     /* Bleu électrique */
+    --color-forge: #ff4d4d;    /* Rouge/Orange Feu */
+    --color-lab: #7aff59;      /* Vert fluo/Acide */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, .logo {
+    font-family: 'Fredoka', sans-serif; /* Police arrondie et fun */
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* --- NAVIGATION --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    position: fixed;
+    width: 100%;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    border-bottom: 2px solid rgba(255,255,255,0.05);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-next);
+    cursor: pointer;
+}
+
+.highlight-forge { color: var(--color-forge); }
+.highlight-lab { color: var(--color-lab); }
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-weight: 700;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--color-next); }
+
+.btn-nav {
+    background: var(--color-forge);
+    padding: 8px 20px;
+    border-radius: 20px;
+    color: white !important;
+    transition: transform 0.2s !important;
+}
+
+.btn-nav:hover { transform: scale(1.1); }
+
+/* --- HERO SECTION --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content { z-index: 2; padding: 20px; }
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-main {
+    background: linear-gradient(45deg, var(--color-next), var(--color-lab));
+    color: #1a1a2e;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: inline-block;
+}
+
+.btn-main:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 40px rgba(122, 255, 89, 0.6);
+}
+
+/* Formes en arrière plan (Blobs) */
+.background-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    z-index: 1;
+    animation: float 6s infinite ease-in-out;
+}
+
+.shape-1 {
+    width: 300px;
+    height: 300px;
+    background: var(--color-forge);
+    top: 20%;
+    left: 10%;
+}
+
+.shape-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--color-next);
+    bottom: 10%;
+    right: 10%;
+    animation-delay: 3s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -40px); }
+}
+
+/* --- SECTIONS GÉNÉRAL --- */
+.section-padding { padding: 80px 5%; }
+.bg-alt { background-color: var(--bg-alt); }
+.container { max-width: 1200px; margin: 0 auto; }
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 60px;
+}
+
+.underline {
+    position: relative;
+    z-index: 1;
+}
+
+.underline::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: var(--color-lab);
+    opacity: 0.6;
+    z-index: -1;
+    transform: rotate(-2deg);
+}
+
+/* --- CARDS (CONCEPT) --- */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    transition: transform 0.3s, border 0.3s;
+    border: 2px solid transparent;
+}
+
+.card:hover { transform: translateY(-10px); }
+
+.icon-box {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.card-next:hover { border-color: var(--color-next); }
+.card-next .icon-box { color: var(--color-next); }
+
+.card-forge:hover { border-color: var(--color-forge); }
+.card-forge .icon-box { color: var(--color-forge); }
+
+.card-lab:hover { border-color: var(--color-lab); }
+.card-lab .icon-box { color: var(--color-lab); }
+
+.card h3 { font-size: 1.5rem; margin-bottom: 15px; }
+.card p { line-height: 1.6; color: var(--text-muted); }
+
+/* --- SERVICES --- */
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.service-item {
+    background: var(--bg-color);
+    padding: 30px;
+    border-radius: 15px;
+    border-left: 5px solid var(--color-next);
+    transition: transform 0.3s;
+}
+
+.service-item:nth-child(2) { border-color: var(--color-forge); }
+.service-item:nth-child(3) { border-color: var(--color-lab); }
+
+.service-item:hover { transform: scale(1.02); }
+
+/* --- CONTACT & FOOTER --- */
+.contact-box {
+    text-align: center;
+    background: linear-gradient(135deg, #2a2a4e, #1a1a2e);
+    padding: 60px;
+    border-radius: 30px;
+    margin-bottom: 50px;
+}
+
+.contact-box h2 { margin-bottom: 20px; }
+.contact-box p { margin-bottom: 40px; font-size: 1.2rem; }
+
+.socials {
+    margin-top: 40px;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.socials a:hover { color: var(--color-forge); }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* --- ANIMATION CLASS (JS) --- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .nav-links { display: none; } /* Pour simplifier, on cache le menu sur mobile ici, sinon il faudrait plus de JS */
+}
